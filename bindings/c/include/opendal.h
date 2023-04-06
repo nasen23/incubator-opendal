@@ -25,14 +25,33 @@
 #include <stddef.h>
 #include <stdbool.h>
 
+/*
+ Hello, OpenDAL!
+ `opendal_operator` is the entry for all public blocking apis.
+ */
+typedef struct od_operator od_operator;
+
 #ifdef __cplusplus
 extern "C" {
 #endif // __cplusplus
 
 /*
- Hello, OpenDAL!
+ Create a new blocking `opendal_operator` with the given `scheme` and options.
  */
-void hello_opendal(void);
+int od_operator_new(struct od_operator **operator_,
+                    const char *scheme,
+                    const char *const *const *options,
+                    intptr_t options_len);
+
+/*
+ Free a previously created operator.
+ */
+void od_operator_free(struct od_operator *operator_);
+
+int od_operator_read(struct od_operator *operator_,
+                     const char *path,
+                     uint8_t **buf,
+                     uintptr_t *size);
 
 #ifdef __cplusplus
 } // extern "C"

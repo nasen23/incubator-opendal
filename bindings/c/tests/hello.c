@@ -16,9 +16,11 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+#include <stdio.h>
 #include "opendal.h"
 
 int main(int argc, char *argv[]) {
+    printf("%d", sizeof(struct od_buf));
     hello_opendal();
     return 0;
 }
